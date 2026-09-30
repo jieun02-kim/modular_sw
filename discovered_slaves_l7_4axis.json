@@ -1,0 +1,20 @@
+{
+  "slaves": [
+    {"position": 0, "name": "L7N", "vendor_id": "0x00007595", "product_code": "0x00000000", "revision": "0x00000002", "serial": 0, "coe": true, "device_type": "0x00020192",
+     "syncs": [
+      {"sm": 2, "dir": "out", "pdos": [{"index": "0x1601", "entries": [["0x6040", 0, 16], ["0x607A", 0, 32]]}]},
+      {"sm": 3, "dir": "in", "pdos": [{"index": "0x1A01", "entries": [["0x6041", 0, 16], ["0x6064", 0, 32]]}]}]},
+    {"position": 1, "name": "L7N - Standard EtherCAT drive(CoE)", "vendor_id": "0x00007595", "product_code": "0x00000000", "revision": "0x00000002", "serial": 0, "coe": true, "device_type": "0x00020192",
+     "syncs": [
+      {"sm": 2, "dir": "out", "pdos": [{"index": "0x1601", "entries": [["0x6040", 0, 16], ["0x607A", 0, 32]]}]},
+      {"sm": 3, "dir": "in", "pdos": [{"index": "0x1A01", "entries": [["0x6041", 0, 16], ["0x6064", 0, 32]]}]}]},
+    {"position": 2, "name": "L7N - Standard EtherCAT drive(CoE)", "vendor_id": "0x00007595", "product_code": "0x00000000", "revision": "0x00000002", "serial": 0, "coe": true, "device_type": "0x00020192",
+     "syncs": [
+      {"sm": 2, "dir": "out", "pdos": [{"index": "0x1601", "entries": [["0x6040", 0, 16], ["0x607A", 0, 32]]}]},
+      {"sm": 3, "dir": "in", "pdos": [{"index": "0x1A01", "entries": [["0x6041", 0, 16], ["0x6064", 0, 32]]}]}]},
+    {"position": 3, "name": "L7N", "vendor_id": "0x00007595", "product_code": "0x00000000", "revision": "0x00000002", "serial": 0, "coe": true, "device_type": "0x00020192",
+     "syncs": [
+      {"sm": 2, "dir": "out", "pdos": [{"index": "0x1601", "entries": [["0x6040", 0, 16], ["0x607A", 0, 32]]}]},
+      {"sm": 3, "dir": "in", "pdos": [{"index": "0x1A01", "entries": [["0x6041", 0, 16], ["0x6064", 0, 32]]}]}]}
+  ]
+}
