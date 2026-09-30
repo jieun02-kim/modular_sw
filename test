@@ -1,0 +1,71 @@
+# json_goal_sender.py
+import json
+import math
+
+import rclpy
+from rclpy.node import Node
+from rclpy.action import ActionClient
+
+from geometry_msgs.msg import PoseStamped
+from nav2_msgs.action import NavigateToPose
+from tf_transformations import quaternion_from_euler
+
+
+class JsonGoalSender(Node):
+    def __init__(self):
+        # json_goal_sender 노드 생성
+        super().__init__('json_goal_sender')
+
+				# 좌표 인터페이스, nav2 action 서버 이름
+        self.action_client = ActionClient(
+            self,
+            NavigateToPose,
+            'navigate_to_pose'
+        )
+
+        # JSON 파일 경로
+        json_path = '/home/raimlab/goals.json'
+
+        with open(json_path, 'r') as f:
+            self.goals = json.load(f)
+
+        # 예: toilet로 이동
+        self.send_goal("toilet")
+
+    def send_goal(self, goal_name):
+        goal = self.goals[goal_name]
+				
+		
+        pose = PoseStamped()
+        pose.header.frame_id = goal["frame_id"]
+        pose.header.stamp = self.get_clock().now().to_msg()
+
+        pose.pose.position.x = goal["x"]
+        pose.pose.position.y = goal["y"]
+        
+        
+        q = quaternion_from_euler(0.0, 0.0, goal["yaw"])
+        pose.pose.orientation.x = q[0]
+        pose.pose.orientation.y = q[1]
+        pose.pose.orientation.z = q[2]
+        pose.pose.orientation.w = q[3]
+
+        # NavigateToPose 는 특정 포지션을 지정하는 action
+        nav_goal = NavigateToPose.Goal()
+        nav_goal.pose = pose
+
+        self.get_logger().info(f"Sending goal: {goal_name}")
+
+        self.action_client.wait_for_server()
+        self.action_client.send_goal_async(nav_goal)
+
+
+def main():
+    rclpy.init()
+    node = JsonGoalSender()
+    rclpy.spin(node)
+    rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()
